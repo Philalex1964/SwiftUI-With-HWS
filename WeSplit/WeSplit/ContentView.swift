@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var checkAmount = 0.0
+    @State private var checkAmount = ""
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
-    @State private var tipAmount = 0.0
+    @State private var tipAmount = ""
     @FocusState private var amountIsFocused: Bool
-
+    let currency = Locale.current.currencyCode
+    let placeHolder = "Amount"
     let tipPercentages = [10, 15, 20, 25, 0]
     
     
     var totalPerPreson: Double {
         let peopleCount = Double(numberOfPeople + 2)
         let tipSelection = Double(tipPercentage)
-        let tipAmount = Double(tipAmount)
         
-        let tipValue = checkAmount / 100 * tipSelection + tipAmount
-        let grandTotal = checkAmount + tipValue
+        let tipValue = (Double(checkAmount) ?? 0) / 100 * tipSelection + (Double(tipAmount) ?? 0)
+        let grandTotal = (Double(checkAmount) ?? 0) + tipValue
         let amountPerPerson = grandTotal / peopleCount
         
         return amountPerPerson
@@ -31,9 +31,9 @@ struct ContentView: View {
     
     var grandTotal: Double {
         let tipSelection = Double(tipPercentage)
-        let tipValue = checkAmount / 100 * tipSelection +  tipAmount
-        let grandTotal = checkAmount + tipValue
-        
+        let tipValue = (Double(checkAmount) ?? 0) / 100 * tipSelection +  (Double(tipAmount) ?? 0)
+        let grandTotal = (Double(checkAmount) ?? 0) + tipValue
+        print(currency!)
         return grandTotal
     }
 
@@ -41,8 +41,12 @@ struct ContentView: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                        .keyboardType(.decimalPad)
+                    TextField(placeHolder, text: $checkAmount, onEditingChanged: { editing in
+                        if editing {
+                            checkAmount = ""
+                        }
+                    })
+                        .keyboardType(.numberPad)
                         .focused($amountIsFocused)
                     
                     Picker("Number of people", selection: $numberOfPeople) {
@@ -52,7 +56,7 @@ struct ContentView: View {
                     }
                     .pickerStyle(.automatic)
                 } header: {
-                    Text("Amount spent")
+                    Text("Amount spent in " + (currency ?? "USD"))
                 }
                 
                 Section {
@@ -68,11 +72,15 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    TextField("Fixed amount", value: $tipAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                        .keyboardType(.decimalPad)
+                    TextField(placeHolder, text: $tipAmount, onEditingChanged: { editing in
+                        if editing {
+                            tipAmount = ""
+                        }
+                    })
+                        .keyboardType(.numberPad)
                         .focused($amountIsFocused)
                 } header: {
-                    Text("Or tip fixed amount:")
+                    Text("Or tip fixed amount in " + (currency ?? "USD"))
                 }
                 
                 Section {
