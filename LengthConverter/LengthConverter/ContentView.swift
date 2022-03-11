@@ -9,24 +9,19 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State private var unitSelected = "Not selected"
-    @State private var inputNumber = 0.0
-    
-    @State private var outputUnit = "Not selected"
+    @State private var unitSelected = "m"
+    @State private var inputNumber = "1"
+    @State private var placeHolder = "Input number"
+    @State private var outputUnit = "m"
     @FocusState private var amountIsFocused: Bool
     
-    @State private var numberFormatter: NumberFormatter = {
-        var nf = NumberFormatter()
-        nf.numberStyle = .decimal
-        return nf
-    }()
 
     let units = ["km", "m", "dm", "cm", "mile", "yard", "foot", "inch"]
     
     let unitsDictionary = ["km": UnitLength.kilometers, "m": UnitLength.meters, "dm": UnitLength.decimeters, "cm": UnitLength.centimeters, "mile": UnitLength.miles, "yard": UnitLength.yards, "foot": UnitLength.feet, "inch": UnitLength.inches]
     
     var outputNumber: Double {
-        let inputMeters = Measurement(value: inputNumber, unit: unitsDictionary[unitSelected] ?? .meters).converted(to: UnitLength.meters)
+        let inputMeters = Measurement(value: Double(inputNumber) ?? 1, unit: unitsDictionary[unitSelected] ?? .meters).converted(to: UnitLength.meters)
         
         let output = Measurement(value: inputMeters.value, unit: UnitLength.meters) .converted(to: unitsDictionary[outputUnit] ?? .meters)
         
@@ -48,7 +43,11 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    TextField("Input number", value: $inputNumber, formatter: numberFormatter)
+                    TextField(placeHolder, text: $inputNumber, onEditingChanged: { editing in
+                        if editing {
+                            inputNumber = ""
+                        }
+                    })
                         .keyboardType(.decimalPad)
                         .focused($amountIsFocused)
                 } header: {
@@ -76,7 +75,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
-                    
+
                     Button("Done") {
                         amountIsFocused = false
                     }
