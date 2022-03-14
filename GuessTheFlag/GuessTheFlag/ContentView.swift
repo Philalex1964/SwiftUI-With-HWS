@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center)
+//        Button("Delete selection") {
+//            print("Now deleting...")
+//        }
+        Button("Delete selection", action: executeDelete)
+    }
+    
+    func executeDelete() {
+        print("Now deleting...")
     }
 }
 
