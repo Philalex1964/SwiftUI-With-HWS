@@ -10,13 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         Button {
-            print("Button was tapped")
+            print("Edit button was tapped")
         } label: {
-            Text("Tap me!")
-                .padding()
-                .foregroundColor(.white)
-                .background(.red)
+            Label("Edit", systemImage: "pencil")
         }
+//  to use after image to make color original not blue
+//        .renderingMode(.original)
     }
 }
 
