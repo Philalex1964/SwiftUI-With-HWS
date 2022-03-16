@@ -10,19 +10,24 @@ import SwiftUI
 struct ContentView: View {
     @State private var checkAmount = ""
     @State private var numberOfPeople = 2
-    @State private var tipPercentage = 20
+    @State private var tipPercentage = 0
     @State private var tipAmount = ""
+    
     @FocusState private var amountIsFocused: Bool
+    
     let currency = Locale.current.currencyCode
     let placeHolder = "Amount"
     let tipPercentages = [10, 15, 20, 25, 0]
     
     
-    var totalPerPreson: Double {
-        let peopleCount = Double(numberOfPeople + 2)
+    var tipValue: Double {
         let tipSelection = Double(tipPercentage)
         
-        let tipValue = (Double(checkAmount) ?? 0) / 100 * tipSelection + (Double(tipAmount) ?? 0)
+        return (Double(checkAmount) ?? 0) / 100 * tipSelection + (Double(tipAmount) ?? 0)
+    }
+    
+    var totalPerPerson: Double {
+        let peopleCount = Double(numberOfPeople + 2)
         let grandTotal = (Double(checkAmount) ?? 0) + tipValue
         let amountPerPerson = grandTotal / peopleCount
         
@@ -30,13 +35,11 @@ struct ContentView: View {
     }
     
     var grandTotal: Double {
-        let tipSelection = Double(tipPercentage)
-        let tipValue = (Double(checkAmount) ?? 0) / 100 * tipSelection +  (Double(tipAmount) ?? 0)
         let grandTotal = (Double(checkAmount) ?? 0) + tipValue
         print(currency!)
         return grandTotal
     }
-
+    
     var body: some View {
         NavigationView {
             Form {
@@ -46,8 +49,8 @@ struct ContentView: View {
                             checkAmount = ""
                         }
                     })
-                        .keyboardType(.numberPad)
-                        .focused($amountIsFocused)
+                    .keyboardType(.numberPad)
+                    .focused($amountIsFocused)
                     
                     Picker("Number of people", selection: $numberOfPeople) {
                         ForEach(2..<15) {
@@ -77,20 +80,24 @@ struct ContentView: View {
                             tipAmount = ""
                         }
                     })
-                        .keyboardType(.numberPad)
-                        .focused($amountIsFocused)
+                    .keyboardType(.numberPad)
+                    .focused($amountIsFocused)
                 } header: {
                     Text("Or tip fixed amount in " + (currency ?? "USD"))
                 }
                 
                 Section {
-                    Text(grandTotal, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    ZStack {
+                        Color(tipValue == 0 ? .red : .white)
+                        Text(grandTotal, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    }
                 } header: {
                     Text("Total amount")
                 }
                 
+                
                 Section {
-                        Text(totalPerPreson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
                 } header: {
                     Text("Amount per person")
                 }
