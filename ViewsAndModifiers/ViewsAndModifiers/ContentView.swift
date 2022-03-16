@@ -8,45 +8,50 @@
 import SwiftUI
 
 struct ContentView: View {
-    var motto1: some View {
-        Text("Draco dormiens")
-    }
-    
-    let motto2 = Text("nunquam titillandus")
-//    3 ways to put multiple views in the property
-    
-    var spells: some View {
-        VStack {
-            Text("Lumos")
-            Text("Obliviate")
-        }
-    }
-   
-    var spells1: some View {
-        Group {
-            Text("Lumos")
-            Text("Obliviate")
-        }
-    }
-    
-    @ViewBuilder var spells2: some View {
-        Text("Lumos")
-        Text("Obliviate")
-    }
-    
     
     var body: some View {
-        VStack {
-            motto1
-                .background(.red)
-            motto2
-                .background(.blue)
-            spells
-            spells1
-            spells2
-        }
+        VStack(spacing: 10) {
+                    Text("First")
+                        .font(.largeTitle)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(.blue)
+                        .clipShape(Capsule())
+
+                    Text("Second")
+                        .font(.largeTitle)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(.blue)
+                        .clipShape(Capsule())
+                }
     }
 }
+/*
+ struct CapsuleText: View {
+     var text: String
+
+     var body: some View {
+         Text(text)
+             .font(.largeTitle)
+             .padding()
+             .foregroundColor(.white)
+             .background(.blue)
+             .clipShape(Capsule())
+     }
+ }
+ 
+ struct ContentView: View {
+     var body: some View {
+         VStack(spacing: 10) {
+ CapsuleText(text: "First")
+         .foregroundColor(.white)
+     CapsuleText(text: "Second")
+         .foregroundColor(.yellow)
+         }
+     }
+ }
+ */
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
