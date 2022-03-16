@@ -8,29 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        /*
-        Button("Hello, world!"){
-            print(type(of: self.body))
-        }
-//        Variant 1 with small red bg
-//            .background(.red)
-//            .frame(width: 200, height: 200)
-        
-//        Variant 2 with big red bg
-        .frame(width: 200, height: 200)
-        .background(.red)
-         */
-        Text("Hello, world!")
-            .padding()
-            .background(.red)
-            .padding()
-            .background(.blue)
-            .padding()
-            .background(.green)
-            .padding()
-            .background(.yellow)
-    }
+    @State private var useRedText = false
+
+       var body: some View {
+           Button("Hello World") {
+               // flip the Boolean between true and false
+               useRedText.toggle()
+           }
+           .foregroundColor(useRedText ? .red : .blue)
+           
+//           if/else alternative
+           /*
+            var body: some View {
+                if useRedText {
+                    Button("Hello World") {
+                        useRedText.toggle()
+                    }
+                    .foregroundColor(.red)
+                } else {
+                    Button("Hello World") {
+                        useRedText.toggle()
+                    }
+                    .foregroundColor(.blue)
+                }
+            }
+            */
+       }
 }
 
 struct ContentView_Previews: PreviewProvider {
