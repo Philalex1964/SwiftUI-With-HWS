@@ -11,28 +11,27 @@ struct ContentView: View {
     @State private var useRedText = false
 
        var body: some View {
-           Button("Hello World") {
-               // flip the Boolean between true and false
-               useRedText.toggle()
+//           Envirement modifier can be overrided
+           VStack {
+               Text("Gryffindor")
+                   .font(.largeTitle)
+               Text("Hufflepuff")
+               Text("Ravenclaw")
+               Text("Slytherin")
            }
-           .foregroundColor(useRedText ? .red : .blue)
+           .font(.title)
            
-//           if/else alternative
-           /*
-            var body: some View {
-                if useRedText {
-                    Button("Hello World") {
-                        useRedText.toggle()
-                    }
-                    .foregroundColor(.red)
-                } else {
-                    Button("Hello World") {
-                        useRedText.toggle()
-                    }
-                    .foregroundColor(.blue)
-                }
-            }
-            */
+           Spacer()
+           
+//           Regular modifier - can not
+           VStack {
+               Text("Gryffindor")
+                   .blur(radius: 0)
+               Text("Hufflepuff")
+               Text("Ravenclaw")
+               Text("Slytherin")
+           }
+           .blur(radius: 5)
        }
 }
 
