@@ -30,9 +30,10 @@ struct ContentView: View {
     @State private var showingAlert = false
     @State private var alertTitle = ""
     @State private var attemptsCount = 0
+    @State private var isButtonTapped = false
     
-    let gameWon = "Great! You won!"
-    let gameLost = "Oops! You lost!"
+    let gameWon = "Great! You won 1 point!"
+    let gameLost = "Oops! You lost 1 point!"
     
     var message: String {
         "Your score is: \(score)"
@@ -55,7 +56,7 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 
-                Text(moves[gameChoice])
+                Text(isButtonTapped ? moves[gameChoice] : "?")
                     .font(.system(size: 200))
                     .foregroundColor(.white)
                 
@@ -108,16 +109,17 @@ struct ContentView: View {
         }
         attemptsCount += 1
         showingAlert = true
+        isButtonTapped = true
     }
 
     func nextRound() {
         moves.shuffle()
         gameToWinCondition.shuffle()
+        isButtonTapped = false
     }
 
     func newGame () {
-        moves.shuffle()
-        gameToWinCondition.shuffle()
+        nextRound()
         score = 0
         attemptsCount = 0
     }
