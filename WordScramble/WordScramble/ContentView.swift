@@ -8,43 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
-    let people = ["Finn", "Leia", "Luke", "Rey"]
     
     var body: some View {
-        // Combination
-        List {
-            Text("Static Row")
-            
-            ForEach(people, id: \.self) {
-                Text($0)
-            }
-            
-            Text("Static Row")
-        }
+        Text("Hello")
+    }
+    
+    func test() {
+        let input = "a b c"
+        let letters = input.components(separatedBy: " ")
+    }
+    
+    func test1() {
+        let input = """
+                    a
+                    b
+                    c
+                    """
+        let letters = input.components(separatedBy: "\n")
+        let letter = letters.randomElement()
         
-        // List with arrays
-        List(people, id: \.self) {
-            Text($0)
-            //  List can generate its rows entirely from dynamic content without needing a ForEach.
-            
-            //            Section("Section 1") {
-            //                Text("Static row 1")
-            //                Text("Static row 2")
-            //            }
-            //
-            //            Section("Section 2") {
-            //                ForEach(0..<7
-            //                ) {
-            //                    Text("Dynamic rows \($0)")
-            //                }
-            //            }
-            //
-            //            Section("Section 3") {
-            //                Text("Static row 3")
-            //                Text("Static row 4")
-            //            }
-        }
-        .listStyle(.grouped)
+        let trimmed = letter?.trimmingCharacters(in: .whitespacesAndNewlines)
+
+    }
+    
+    func test3() {
+        let word = "swift"
+        let checker = UITextChecker()
+        
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        let allGood = misspelledRange.location == NSNotFound
+
+
     }
 }
 
