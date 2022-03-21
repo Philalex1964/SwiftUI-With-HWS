@@ -16,9 +16,19 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var score = 0
+    
     var body: some View {
         NavigationView {
             List {
+                Section {
+                    Image(systemName: "\(score).circle.fill")
+//                    Text("\(score)")
+                } header: {
+                    Text("Your score: ")
+                }
+                .font(.system(size: 24))
+                
                 Section {
                     TextField("Enter your word", text: $newWord)
                         .autocapitalization(.none)
@@ -36,7 +46,9 @@ struct ContentView: View {
             .navigationTitle(rootWord)
             .onSubmit(addNewWord)
             .onAppear(perform: startGame)
-            .alert(errorTitle, isPresented: $showingError) {
+            .toolbar {
+                Button("Restart", action: restart)
+            }          .alert(errorTitle, isPresented: $showingError) {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text(errorMessage)
@@ -63,11 +75,21 @@ struct ContentView: View {
             return
         }
         
+        guard !isRootWord(word: answer) else {
+            wordError(title: "The word is equal start word!", message: "You can't just use start word!")
+            return
+        }
+        
+        guard !isShort(word: answer) else {
+            wordError(title: "The word is short!", message: "You can't just use a word shorter than three letters!")
+            return
+        }
         
         withAnimation {
             usedWords.insert(answer, at: 0)
         }
         
+        score += answer.count
         newWord = ""
     }
     
@@ -82,6 +104,12 @@ struct ContentView: View {
         }
         
         fatalError("Could not load start.txt from bundle.")
+    }
+    
+    func restart() {
+        startGame()
+        score = 0
+        usedWords = [String]()
     }
     
     func isOriginal(word: String) -> Bool {
@@ -114,6 +142,14 @@ struct ContentView: View {
             errorTitle = title
             errorMessage = message
             showingError = true
+    }
+    
+    func isRootWord(word: String) -> Bool {
+        return word == rootWord
+    }
+    
+    func isShort(word: String) -> Bool {
+        return word.count < 3
     }
 }
 
