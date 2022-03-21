@@ -8,40 +8,43 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var usedWords = [String]()
+    @State private var rootWord = ""
+    @State private var newWord = ""
     
     var body: some View {
-        Text("Hello")
+        NavigationView {
+            List {
+                Section {
+                    TextField("Enter your word", text: $newWord)
+                        .autocapitalization(.none)
+                }
+
+                Section {
+                    ForEach(usedWords, id: \.self) { word in
+                        HStack {
+                            Image(systemName: "\(word.count).circle")
+                            Text(word)
+                        }
+                    }
+                }
+            }
+            .navigationTitle(rootWord)
+            .onSubmit(addNewWord)
+        }
     }
     
-    func test() {
-        let input = "a b c"
-        let letters = input.components(separatedBy: " ")
+    func addNewWord() {
+        let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        guard answer.count > 0 else { return }
+        
+        withAnimation {
+            usedWords.insert(answer, at: 0)
+        }
+        newWord = ""
     }
     
-    func test1() {
-        let input = """
-                    a
-                    b
-                    c
-                    """
-        let letters = input.components(separatedBy: "\n")
-        let letter = letters.randomElement()
-        
-        let trimmed = letter?.trimmingCharacters(in: .whitespacesAndNewlines)
-
-    }
     
-    func test3() {
-        let word = "swift"
-        let checker = UITextChecker()
-        
-        let range = NSRange(location: 0, length: word.utf16.count)
-        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-        
-        let allGood = misspelledRange.location == NSNotFound
-
-
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
