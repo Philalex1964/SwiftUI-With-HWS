@@ -39,6 +39,7 @@ struct ContentView: View {
     @State private var scoreMessage = ""
     @State private var score = 0
     @State private var attemptsCount = 0
+    @State private var selectedFlag = 0
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -70,6 +71,7 @@ struct ContentView: View {
                         } label: {
                             FlagImage(image: countries[number])
                         }
+                        .rotation3DEffect(.degrees(number  == number ? 360 : 0), axis: (x: 0, y: 1, z: 0))
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -106,6 +108,7 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
+        selectedFlag = number
         if number == correctAnswer {
             scoreTitle = "Correct"
             score += 1
@@ -114,7 +117,6 @@ struct ContentView: View {
             scoreTitle = "Wrong"
             score -= 1
             scoreMessage = "That’s the flag of \(countries[number])! Your score is \(score)."
-            
         }
 
         attemptsCount += 1
@@ -144,3 +146,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+"https://www.hackingwithswift.com/forums/100-days-of-swiftui/day-34-adding-animations-to-guesstheflag/10654"
+"https://stackoverflow.com/questions/68272220/swift-ui-animation-360-degree-spin"
