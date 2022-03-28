@@ -13,23 +13,57 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.type)
+            Form {
+                Section {
+                    List {
+                        ForEach(expenses.items) { item in
+                            if item.type == "Personal" {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(item.name)
+                                            .font(.headline)
+                                        Text(item.type)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                                        .font((item.amount > 100) ? .title : ((item.amount > 10) ? .title2 : .headline))
+                                }
+                            }
                         }
-                        
-                        Spacer()
-                        
-                        Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                            .font((item.amount > 100) ? .title : ((item.amount > 10) ? .title2 : .headline))
+                        .onDelete(perform: removeItems)
+                    }
+                } header: {
+                    Text("Personal")
+                }
+                
+                Section {
+                    List {
+                        ForEach(expenses.items) { item in
+                            if item.type == "Business" {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(item.name)
+                                            .font(.headline)
+                                        Text(item.type)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                                        .font((item.amount > 100) ? .title : ((item.amount > 10) ? .title2 : .headline))
+                                }
+                            }
+                        }
+                        .onDelete(perform: removeItems)
                     }
                 }
-                .onDelete(perform: removeItems)
+                header: {
+                    Text("Business")
+                }
             }
+            
             .navigationTitle("iExpense")
             .toolbar {
                 Button {
