@@ -13,12 +13,21 @@ struct MissionView: View {
         let astronaut: Astronaut
     }
     
+    struct CustomDivider: View {
+        var body: some View {
+            Rectangle()
+                .frame(height: 2)
+                .foregroundColor(.lightBackground)
+                .padding(.vertical)
+        }
+    }
+    
     let mission: Mission
     let crew: [CrewMember]
     
     var body: some View {
         GeometryReader { geometry in
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     Image(mission.image)
                         .resizable()
@@ -26,11 +35,10 @@ struct MissionView: View {
                         .frame(maxWidth: geometry.size.width * 0.6)
                         .padding(.top)
                     
+                    Text(mission.formattedLaunchDate)
+                    
                     VStack(alignment: .leading) {
-                        Rectangle()
-                            .frame(height: 2)
-                            .foregroundColor(.lightBackground)
-                            .padding(.vertical)
+                        CustomDivider()
                         
                         Text("Mission Highlights")
                             .font(.title.bold())
@@ -38,10 +46,7 @@ struct MissionView: View {
                         
                         Text(mission.description)
                         
-                        Rectangle()
-                            .frame(height: 2)
-                            .foregroundColor(.lightBackground)
-                            .padding(.vertical)
+                        CustomDivider()
                         
                         Text("Crew")
                             .font(.title.bold())
