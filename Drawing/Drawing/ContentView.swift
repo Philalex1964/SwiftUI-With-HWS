@@ -8,18 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var amount = 0.0
     
     var body: some View {
-        ZStack {
-            Image("Example")
-                .colorMultiply(.yellow)
-
-//            Rectangle()
-//                .fill(.red)
-//                .blendMode(.multiply)
+        VStack {
+            ZStack {
+                Circle()
+//                    .fill(.red)
+                    .fill(Color(red: 1, green: 0, blue: 0))
+                    .frame(width: 200 * amount)
+                    .offset(x: -50, y: -80)
+                    .blendMode(.screen)
+                
+                Circle()
+//                    .fill(.green)
+                    .fill(Color(red: 0, green: 1, blue: 0))
+                    .frame(width: 200 * amount)
+                    .offset(x: 50, y: -80)
+                    .blendMode(.screen)
+                
+                Circle()
+//                    .fill(.blue)
+                    .fill(Color(red: 0, green: 0, blue: 1))
+                    .frame(width: 200 * amount)
+                    .blendMode(.screen)
+            }
+            .frame(width: 300, height: 300)
+            
+            Slider(value: $amount)
+                .padding()
         }
-        .frame(width: 400, height: 500)
-        .clipped()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.black)
+        .ignoresSafeArea()
     }
 }
 
