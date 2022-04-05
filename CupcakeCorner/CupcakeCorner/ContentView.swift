@@ -10,13 +10,13 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-//        1 way
+//        1st way
 /*       AsyncImage(url: URL(string: "https://hws.dev/img/logo.png"), scale: 3)
 //            .resizable() - doesn'work
             .frame(width: 200, height: 200)
  */
-//        2 way
-/*
+//        2nd way
+
         AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { image in
             image
                 .resizable()
@@ -26,9 +26,9 @@ struct ContentView: View {
             ProgressView()
         }
         .frame(width: 200, height: 200)
- */
+
 //        3rd way
-        AsyncImage(url: URL(string: "https://hws.dev/img/bad.png")) { phase in
+/*        AsyncImage(url: URL(string: "https://hws.dev/img/bad.png")) { phase in
             if let image = phase.image {
                 image
                     .resizable()
@@ -40,6 +40,7 @@ struct ContentView: View {
             }
         }
         .frame(width: 200, height: 200)
+ */
     }
 }
 
