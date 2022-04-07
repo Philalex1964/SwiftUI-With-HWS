@@ -60,7 +60,7 @@ struct DetailView: View {
             Button {
                 showingDeleteAlert = true
             } label: {
-                Label("Delete this book", systemImage: "trash")
+                Label("Delete this book!", systemImage: "trash")
             }
         }
     }
