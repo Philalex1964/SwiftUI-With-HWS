@@ -6,23 +6,16 @@
 //
 
 import SwiftUI
-struct Student: Hashable {
-    let name: String
-}
 
 struct ContentView: View {
-    let students = [Student(name: "Harry Potter"), Student(name: "Hermione Granger")]
+    @Environment(\.managedObjectContext) var moc
 
     var body: some View {
-        List(students, id: \.self) { student in
-            Text(student.name)
+        Button("Save") {
+            if moc.hasChanges {
+                try? moc.save()
+            }
         }
-        
-//        List {
-//            ForEach([2, 4, 6, 8, 10], id: \.self) {
-//                Text("\($0) is even")
-//            }
-//        }
     }
 }
 struct ContentView_Previews: PreviewProvider {
