@@ -9,15 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var randomText: some View {
-        Group {
-            if Bool.random() {
-                Text("Hello, World!")
-                    .frame(width: 300)
-            } else {
-                Text("Hello, World!1")
-            }
-        }
-        
+        Text("Hello, World!")
+            .frame(width: Bool.random() ? 300 : nil)
+            .background(.red)
     }
     
     var body: some View {
