@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    var randomText: some View {
+    @ViewBuilder var randomText: some View {
             if Bool.random() {
-                return AnyView(Text("Hello, World!")
-                    .frame(width: 300))
+              Text("Hello, World!")
+                    .frame(width: 300)
             } else {
-                return AnyView(Text("Hello, World!1"))
+                Text("Hello, World!1")
             }
         }
 
