@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    var randomText: some View {
-        Text("Hello, World!")
-            .frame(width: Bool.random() ? 300 : nil)
-            .background(.red)
-    }
-    
+    @State private var views = [AnyView]()
+
     var body: some View {
-        randomText
+        VStack {
+            Button("Add Shape") {
+                if Bool.random() {
+                    views.append(AnyView(Circle().frame(height: 50)))
+                } else {
+                    views.append(AnyView(Rectangle().frame(width: 50)))
+                }
+            }
+
+            ForEach(0..<views.count, id: \.self) {
+                views[$0]
+            }
+
+            Spacer()
+        }
     }
 }
 
