@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
+    var randomText: some View {
+            if Bool.random() {
+                return AnyView(Text("Hello, World!")
+                    .frame(width: 300))
+            } else {
+                return AnyView(Text("Hello, World!1"))
+            }
+        }
+
+        var body: some View {
+            randomText
+        }
 }
 
 struct ContentView_Previews: PreviewProvider {
