@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1D23802806DB9200ACD45E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1D237F2806DB9200ACD45E /* DetailView.swift */; };
 		3AC28C0A28041107008F5925 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC28C0928041107008F5925 /* User.swift */; };
 		3AC28C0C28041299008F5925 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC28C0B28041299008F5925 /* Friend.swift */; };
 		3AC97E0F2800815B001FB276 /* UsersAndFriendsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC97E0E2800815B001FB276 /* UsersAndFriendsApp.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A1D237F2806DB9200ACD45E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		3AC28C0928041107008F5925 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AC28C0B28041299008F5925 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		3AC97E0B2800815B001FB276 /* UsersAndFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsersAndFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +59,7 @@
 			children = (
 				3AC97E0E2800815B001FB276 /* UsersAndFriendsApp.swift */,
 				3AC97E102800815B001FB276 /* ContentView.swift */,
+				3A1D237F2806DB9200ACD45E /* DetailView.swift */,
 				3AC28C0928041107008F5925 /* User.swift */,
 				3AC28C0B28041299008F5925 /* Friend.swift */,
 				3AC97E122800815C001FB276 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 				3AC97E112800815B001FB276 /* ContentView.swift in Sources */,
 				3AC97E0F2800815B001FB276 /* UsersAndFriendsApp.swift in Sources */,
 				3AC28C0A28041107008F5925 /* User.swift in Sources */,
+				3A1D23802806DB9200ACD45E /* DetailView.swift in Sources */,
 				3AC28C0C28041299008F5925 /* Friend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
