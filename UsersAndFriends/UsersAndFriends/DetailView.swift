@@ -12,33 +12,43 @@ struct DetailView: View {
     
     var body: some View {
         ScrollView {
-//            Text(user.id)
-            Text("Age: \(user.age)")
-            Text(user.company)
-            Text(user.registered)
-            Text(user.email)
-            Text(user.address)
-            Text(user.about)
-            
-            Section {
-                ForEach(user.friends) { friend in
-                    Text(friend.name)
-//                    Text(friend.id)
-                }
-            } header: {
-                Text("Friends")
+            VStack(alignment: .leading, spacing: 10) {
+                Text("UserID: \(user.id)")
+                Text("Age: \(user.age)")
+                Text("Company: \(user.company)")
+                Text("Registraton date: \(user.registered)")
+                Text("Email: \(user.email)")
+                Text("Address: \(user.address)")
+                Text("About:")
+                Text(user.about)
             }
+            .frame(alignment: .leading)
+            
+            Divider()
+            
+            VStack(alignment: .leading, spacing: 10) {
+                Section {
+                    ForEach(user.friends) { friend in
+                        HStack {
+                            Text(friend.name)
+                            Text(friend.id)
+                                .font(.caption)
+                        }
+                    }
+                } header: {
+                    Text("Friends:")
+                        .font(.headline)
+                }
+            }
+            .frame(alignment: .leading)
         }
-        
-        .frame(alignment: .leading)
-        .navigationTitle(user.name)
     }
 }
 
-//struct DetailView_Previews: PreviewProvider {
-//    static let user: User = DetailView().user
-//
-//    static var previews: some View {
-//        DetailView(user: User)
-//    }
-//}
+struct DetailView_Previews: PreviewProvider {
+    
+    
+    static var previews: some View {
+        DetailView(user: User(id: "12345", isActive: true, name: "Alex", age: 58, company: "Vega", email: "123@mail.com", address: "Beograde", about: "ioetqroutyroiotr", registered: "02.02.22", tags: [], friends: []))
+    }
+}

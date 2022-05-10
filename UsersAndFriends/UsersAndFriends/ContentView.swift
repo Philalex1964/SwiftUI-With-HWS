@@ -17,8 +17,7 @@ struct ContentView: View {
                 ForEach(users) { user in
                     NavigationLink {
                         DetailView(user: user)
-//                            .navigationTitle(user.name)
-                            
+                            .navigationTitle(user.name)
                     } label: {
                             HStack {
                                 Text(user.name)
