@@ -19,6 +19,9 @@ struct DetailView: View {
                 Text("Registraton date: \(user.registered)")
                 Text("Email: \(user.email)")
                 Text("Address: \(user.address)")
+                
+                Divider()
+                
                 Text("About:")
                 Text(user.about)
             }

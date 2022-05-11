@@ -58,9 +58,6 @@ struct ContentView: View {
             if let decodedResponse = try? decoder.decode([User].self, from: data) {
                 
                 users = decodedResponse
-                print(users[0].name)
-                print(users[0].registered)
-                
             }
         } catch {
             print("Invalid data")
