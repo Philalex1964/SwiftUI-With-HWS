@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A2F32D1282E60EB003574D7 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F32D0282E60EB003574D7 /* ContentView-ViewModel.swift */; };
 		3A2F32D3282E75B7003574D7 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F32D2282E75B7003574D7 /* FileManager-DocumentsDirectory.swift */; };
+		3A2F32D5282E94B6003574D7 /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F32D4282E94B6003574D7 /* EditView-ViewModel.swift */; };
 		3A79972F282D3D190095551B /* FileManagerWriteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79972E282D3D190095551B /* FileManagerWriteExtension.swift */; };
 		3A799731282D56560095551B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A799730282D56560095551B /* Location.swift */; };
 		3ABF5555282E460F00F341C0 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF5554282E460F00F341C0 /* EditView.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		3A2F32D0282E60EB003574D7 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		3A2F32D2282E75B7003574D7 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
+		3A2F32D4282E94B6003574D7 /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
 		3A79972E282D3D190095551B /* FileManagerWriteExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerWriteExtension.swift; sourceTree = "<group>"; };
 		3A799730282D56560095551B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3ABF5554282E460F00F341C0 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				3AD90231282D266C004FAC3A /* BucketListApp.swift */,
 				3AD90233282D266C004FAC3A /* ContentView.swift */,
 				3ABF5554282E460F00F341C0 /* EditView.swift */,
+				3A2F32D4282E94B6003574D7 /* EditView-ViewModel.swift */,
 				3A799730282D56560095551B /* Location.swift */,
 				3ABF5556282E56FD00F341C0 /* Result.swift */,
 				3A2F32D0282E60EB003574D7 /* ContentView-ViewModel.swift */,
@@ -160,6 +163,7 @@
 				3ABF5555282E460F00F341C0 /* EditView.swift in Sources */,
 				3AD90234282D266C004FAC3A /* ContentView.swift in Sources */,
 				3A799731282D56560095551B /* Location.swift in Sources */,
+				3A2F32D5282E94B6003574D7 /* EditView-ViewModel.swift in Sources */,
 				3A2F32D1282E60EB003574D7 /* ContentView-ViewModel.swift in Sources */,
 				3A2F32D3282E75B7003574D7 /* FileManager-DocumentsDirectory.swift in Sources */,
 				3AD90232282D266C004FAC3A /* BucketListApp.swift in Sources */,
