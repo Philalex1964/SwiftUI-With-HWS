@@ -71,6 +71,11 @@ struct ContentView: View {
             .background(.blue)
             .foregroundColor(.white)
             .clipShape(Capsule())
+            .alert("Biometry unavailable", isPresented: $viewModel.showNoBiometryAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("Your device is not configured for biometric authentication.")
+            }
         }
     }
 }

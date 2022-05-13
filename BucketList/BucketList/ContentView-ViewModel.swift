@@ -16,6 +16,7 @@ extension ContentView {
         
         @Published var selectedPlace: Location?
         @Published var isUnlocked = false
+        @Published var showNoBiometryAlert = false
         
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
         
@@ -65,11 +66,11 @@ extension ContentView {
                             self.isUnlocked = true
                         }
                     } else {
-                        // error
+                        
                     }                    
                 }
             } else {
-                // no biometrics
+                showNoBiometryAlert = true
             }
         }
     }
