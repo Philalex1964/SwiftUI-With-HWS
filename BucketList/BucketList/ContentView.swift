@@ -16,23 +16,36 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
-                MapMarker(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+                MapAnnotation(coordinate: location.coordinate) {
+                    VStack {
+                        Image(systemName: "star.circle")
+                            .resizable()
+                            .foregroundColor(.red)
+                            .frame(width: 44, height: 44)
+                            .background(.white)
+                            .clipShape(Circle())
+                        
+                        Text(location.name)
+                    }
+                }
             }
             .ignoresSafeArea()
-
-        
-        Circle()
-            .fill(.blue)
-            .opacity(0.3)
-            .frame(width: 32, height: 32)
-        
-        VStack {
-            Spacer()
-            HStack {
+            
+            
+            Circle()
+                .fill(.blue)
+                .opacity(0.3)
+                .frame(width: 32, height: 32)
+            
+            VStack {
                 Spacer()
-                Button {
-                    let newLocation = Location(id: UUID(), name: "New location", description: "", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
-                    locations.append(newLocation)                    } label: {
+                HStack {
+                    Spacer()
+                    Button {
+                        let newLocation = Location(id: UUID(), name: "New location", description: "", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
+                        locations.append(newLocation)
+                        //                    print(locations)
+                    } label: {
                         Image(systemName: "plus")
                     }
                     .padding()
@@ -41,10 +54,10 @@ struct ContentView: View {
                     .font(.title)
                     .clipShape(Circle())
                     .padding(.trailing)
+                }
             }
         }
     }
-}
 }
 
 struct ContentView_Previews: PreviewProvider {
