@@ -9,15 +9,17 @@ import MapKit
 import SwiftUI
 
 struct ContentView: View {
-    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
-    @State private var locations = [Location]()
-    
-    @State private var selectedPlace: Location?
-    
+    @StateObject private var viewModel = ViewModel()
+
+//    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+//    @State private var locations = [Location]()
+//    
+//    @State private var selectedPlace: Location?
+//    
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
+            Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
                 MapAnnotation(coordinate: location.coordinate) {
                     VStack {
                         Image(systemName: "star.circle")
@@ -31,7 +33,7 @@ struct ContentView: View {
                             .fixedSize()
                     }
                     .onTapGesture {
-                        selectedPlace = location
+                        viewModel.selectedPlace = location
                     }
                 }
             }
@@ -48,8 +50,9 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     Button {
-                        let newLocation = Location(id: UUID(), name: "New location", description: "", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
-                        locations.append(newLocation)
+                        viewModel.addLocation()
+//                        let newLocation = Location(id: UUID(), name: "New location", description: "", latitude: viewModel.mapRegion.center.latitude, longitude: viewModel.mapRegion.center.longitude)
+//                        viewModel.locations.append(newLocation)
                         //                    print(locations)
                     } label: {
                         Image(systemName: "plus")
@@ -63,11 +66,12 @@ struct ContentView: View {
                 }
             }
         }
-        .sheet(item: $selectedPlace) { place in
+        .sheet(item: $viewModel.selectedPlace) { place in
             EditView(location: place) { newLocation in
-                if let index = locations.firstIndex(of: place) {
-                    locations[index] = newLocation
-                }
+                viewModel.update(location: newLocation)
+//                if let index = viewModel.locations.firstIndex(of: place) {
+//                    viewModel.locations[index] = newLocation
+//                }
             }
         }
     }
