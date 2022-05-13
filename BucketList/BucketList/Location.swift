@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 
 struct Location: Identifiable, Codable, Equatable {
-    let id: UUID
+    var id: UUID
     var name: String
     var description: String
     let latitude: Double
@@ -24,5 +24,6 @@ struct Location: Identifiable, Codable, Equatable {
     
     static func ==(lhs: Location, rhs: Location) -> Bool {
         lhs.id == rhs.id
+        
     }
 }
