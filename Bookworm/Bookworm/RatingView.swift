@@ -20,14 +20,6 @@ struct RatingView: View {
     var offColor = Color.gray
     var onColor = Color.yellow
     
-    func image(for number: Int) -> Image {
-        if number > rating {
-            return offImage ?? onImage
-        } else {
-            return onImage
-        }
-    }
-    
     var body: some View {
         HStack {
             if label.isEmpty == false {
@@ -40,7 +32,47 @@ struct RatingView: View {
                     .onTapGesture {
                         rating = number
                     }
+//                Approach 1.
+//                    .accessibilityLabel("\(number == 1 ? "1 star" : "\(number) stars")")
+//                    .accessibilityRemoveTraits(.isImage)
+//                    .accessibilityAddTraits(number > rating ? .isButton : [.isButton, .isSelected])
             }
+        }
+        .accessibilityElement()
+        .accessibilityLabel(label)
+        .accessibilityValue(rating == 1 ? "1 star" : "\(rating) stars")
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment:
+                if rating < maximumRating { rating += 1 }
+            case .decrement:
+                if rating > 1 { rating -= 1 }
+            default:
+                break
+            }
+        }
+//         Approach 2.
+        .accessibilityElement()
+        .accessibilityLabel(label)
+        .accessibilityValue(rating == 1 ? "1 star" : "\(rating) stars")
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment:
+                if rating < maximumRating { rating += 1 }
+            case .decrement:
+                if rating > 1 { rating -= 1 }
+            default:
+                break
+            }
+        }
+        
+    }
+    
+    func image(for number: Int) -> Image {
+        if number > rating {
+            return offImage ?? onImage
+        } else {
+            return onImage
         }
     }
 }
