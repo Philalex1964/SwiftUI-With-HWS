@@ -1,5 +1,5 @@
 //
-//  LocationFetcherView.swift
+//  LocationFetcherContentView.swift
 //  UsersWithPhotoAndLocations
 //
 //  Created by Aleksandar Filipov on 5/16/22.
@@ -7,9 +7,23 @@
 
 import SwiftUI
 
-struct LocationFetcherView: View {
+struct LocationFetcherContentView: View {
+    let locationFetcher = LocationFetcher()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button("Start Tracking Location") {
+                self.locationFetcher.start()
+            }
+
+            Button("Read Location") {
+                if let location = self.locationFetcher.lastKnownLocation {
+                    print("Your location is \(location)")
+                } else {
+                    print("Your location is unknown")
+                }
+            }
+        }
     }
 }
 

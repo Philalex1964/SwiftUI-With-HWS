@@ -11,6 +11,8 @@
 		3AE49A0028328EA9008DDF86 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE499FF28328EA9008DDF86 /* ContentView.swift */; };
 		3AE49A0228328EAA008DDF86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE49A0128328EAA008DDF86 /* Assets.xcassets */; };
 		3AE49A0528328EAA008DDF86 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE49A0428328EAA008DDF86 /* Preview Assets.xcassets */; };
+		3AE49A0C28328ED1008DDF86 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE49A0B28328ED1008DDF86 /* LocationFetcher.swift */; };
+		3AE49A0E28328F4D008DDF86 /* LocationFetcherContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE49A0D28328F4D008DDF86 /* LocationFetcherContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		3AE499FF28328EA9008DDF86 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3AE49A0128328EAA008DDF86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AE49A0428328EAA008DDF86 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3AE49A0B28328ED1008DDF86 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		3AE49A0D28328F4D008DDF86 /* LocationFetcherContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcherContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				3AE499FD28328EA9008DDF86 /* UsersWithPhotoAndLocationsApp.swift */,
 				3AE499FF28328EA9008DDF86 /* ContentView.swift */,
+				3AE49A0D28328F4D008DDF86 /* LocationFetcherContentView.swift */,
+				3AE49A0B28328ED1008DDF86 /* LocationFetcher.swift */,
 				3AE49A0128328EAA008DDF86 /* Assets.xcassets */,
 				3AE49A0328328EAA008DDF86 /* Preview Content */,
 			);
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AE49A0028328EA9008DDF86 /* ContentView.swift in Sources */,
+				3AE49A0E28328F4D008DDF86 /* LocationFetcherContentView.swift in Sources */,
 				3AE499FE28328EA9008DDF86 /* UsersWithPhotoAndLocationsApp.swift in Sources */,
+				3AE49A0C28328ED1008DDF86 /* LocationFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
