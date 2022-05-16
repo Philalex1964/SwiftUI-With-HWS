@@ -31,6 +31,8 @@ struct ContentView: View {
                                         .font((item.amount > 100) ? .title : ((item.amount > 10) ? .title2 : .headline))
                                 }
                             }
+//                                .accessibilityElement()
+//                                .accessibility(label: "\(item.name) \(item.amount)")
                         }
                         .onDelete(perform: removeItems)
                     }
@@ -55,6 +57,8 @@ struct ContentView: View {
                                         .font((item.amount > 100) ? .title : ((item.amount > 10) ? .title2 : .headline))
                                 }
                             }
+//                                .accessibilityElement()
+//                                .accessibility(label: "\(item.name) \(item.amount)")
                         }
                         .onDelete(perform: removeItems)
                     }
@@ -67,7 +71,7 @@ struct ContentView: View {
             .navigationTitle("iExpense")
             .toolbar {
                 Button {
-                   showingAddExpense = true
+                    showingAddExpense = true
                 } label: {
                     Image(systemName: "plus")
                 }
