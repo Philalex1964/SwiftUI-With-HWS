@@ -11,8 +11,24 @@ struct ContentView: View {
     let possibleNumbers = Array(1...60)
     
     var body: some View {
-        Text("Hello World")
-            .padding()
+        TabView {
+            ProspectsView(filter: .none)
+                .tabItem {
+                    Label("Everyone", systemImage: "person.3")
+                }
+            ProspectsView(filter: .contacted)
+                .tabItem {
+                    Label("Contacted", systemImage: "checkmark.circle")
+                }
+            ProspectsView(filter: .uncontacted)
+                .tabItem {
+                    Label("Uncontacted", systemImage: "questionmark.diamond")
+                }
+            MeView()
+                .tabItem {
+                    Label("Me", systemImage: "person.crop.square")
+                }
+        }
     }
 }
 
