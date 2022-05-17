@@ -7,28 +7,34 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var selectedTab = "One"
 
-    var body: some View {
-        TabView(selection: $selectedTab) {
-            Text("Tab 1")
-                .onTapGesture {
-                    selectedTab = "Two"
-                }
-                .tabItem {
-                    Label("One", systemImage: "star")
-                }
-                .tag("One")
-
-            Text("Tab 2")
-                .tabItem {
-                    Label("Two", systemImage: "circle")
-                }
-                .tag("Two")
+@MainActor class DelayedUpdater: ObservableObject {
+//    @Published var value = 0
+//    var value = 0
+    var value = 0 {
+        willSet {
+            objectWillChange.send()
+            print(value)
+        }
+    }
+    
+    init() {
+        for i in 1...10 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)) {
+                self.value += 1
+            }
         }
     }
 }
+
+struct ContentView: View {
+    @StateObject var updater = DelayedUpdater()
+    
+    var body: some View {
+        Text("Value is: \(updater.value)")
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
