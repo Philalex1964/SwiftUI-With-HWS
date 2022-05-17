@@ -28,16 +28,29 @@ struct ProspectsView: View {
                         Text(prospect.emailAddress)
                             .foregroundColor(.secondary)
                     }
+                    .swipeActions {
+                        if prospect.isContacted {
+                            Button {
+                                prospects.toggle(prospect)
+                            } label: {
+                                Label("Mark Uncontacted", systemImage: "person.crop.circle.badge.xmark")
+                            }
+                            .tint(.blue)
+                        } else {
+                            Button {
+                                prospects.toggle(prospect)
+                            } label: {
+                                Label("Mark Contacted", systemImage: "person.crop.circle.fill.badge.checkmark")
+                            }
+                            .tint(.green)
+                        }
+                    }
                 }
             }
             .navigationTitle(title)
             .toolbar {
                 Button {
                     isShowingScanner = true
-//                    let prospect = Prospect()
-//                    prospect.name = "Paul Hudson"
-//                    prospect.emailAddress = "paul@hackingwithswift.com"
-//                    prospects.people.append(prospect)
                 } label: {
                     Label("Scan", systemImage: "qrcode.viewfinder")
                 }
@@ -71,17 +84,17 @@ struct ProspectsView: View {
     }
     
     func handleScan(result: Result<ScanResult, ScanError>) {
-       isShowingScanner = false
-       
+        isShowingScanner = false
+        
         switch result {
         case .success(let result):
             let details = result.string.components(separatedBy: "\n")
             guard details.count == 2 else { return }
-
+            
             let person = Prospect()
             person.name = details[0]
             person.emailAddress = details[1]
-
+            
             prospects.people.append(person)
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")
