@@ -11,8 +11,7 @@ struct ContentView: View {
     @Environment(\.accessibilityReduceTransparency) var reduceTransparency
 
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        CardView(card: Card.example)
     }
 }
 
