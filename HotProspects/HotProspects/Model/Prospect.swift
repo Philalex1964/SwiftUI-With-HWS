@@ -16,22 +16,31 @@ class Prospect: Identifiable, Codable {
 
 @MainActor class Prospects: ObservableObject {
     @Published private(set) var people: [Prospect]
-    let saveKey = "SavedData"
-
+    let savedFile = "savedFile.json"
+    
     init() {
-        if let data = UserDefaults.standard.data(forKey: saveKey) {
+        let url = FileManager.default.getDocumentsDirectory().appendingPathComponent(savedFile)
+        if let data = try? Data(contentsOf: url) {
             if let decoded = try? JSONDecoder().decode([Prospect].self, from: data) {
                 people = decoded
                 return
             }
         }
-
+        
         people = []
     }
     
     private func save() {
+        let url = FileManager.default.getDocumentsDirectory().appendingPathComponent(savedFile)
         if let encoded = try? JSONEncoder().encode(people) {
-            UserDefaults.standard.set(encoded, forKey: saveKey)
+            do {
+                try encoded.write(to: url)
+                let input = try String(contentsOf: url)
+                print(input)
+            } catch {
+                print(error.localizedDescription)
+            }
+            
         }
     }
     
