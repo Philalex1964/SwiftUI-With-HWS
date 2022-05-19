@@ -46,7 +46,7 @@ struct ContentView: View {
                 }
                 .allowsHitTesting(timeRemaining > 0)
                 
-                if cards.isEmpty {
+                if cards.isEmpty || timeRemaining == 0 {
                     Button("Start Again", action: resetCards)
                         .padding()
                         .background(.white)
