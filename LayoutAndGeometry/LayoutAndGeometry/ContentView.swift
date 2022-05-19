@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+//    var body: some View {
+//        Text("Hello, world!")
+////            .padding(20)
+//            .background(.red)
+//            .padding(20)
+//    }
+//    var body: some View {
+//        Color.red
+//    }
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Image("Example")
+            .resizable()
+            .frame(width: 300, height: 300)
+            
     }
 }
 
