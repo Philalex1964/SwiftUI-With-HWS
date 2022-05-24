@@ -50,6 +50,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3ABA5320283CDED500D339B3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3AC4807C2837D5B900BE15D0 /* ContentView.swift */,
+				3AC31133283B958B007FC25D /* ResortView.swift */,
+				3AC31135283BA458007FC25D /* SkiDetailsView.swift */,
+				3AC31137283BB31E007FC25D /* ResortDetailsView.swift */,
+				3AC31131283B8F45007FC25D /* WelcomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3ABA5321283CDEE900D339B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AC3112D283B80FE007FC25D /* Resort.swift */,
+				3AC31139283BC4AC007FC25D /* Facility.swift */,
+				3AC3113B283BCA9C007FC25D /* Favorites.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3ABA5322283CDEF400D339B3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AC3112F283B81BB007FC25D /* Bundle-Decodable.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3ABA5323283CE17300D339B3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3AC4806E2837D5B900BE15D0 = {
 			isa = PBXGroup;
 			children = (
@@ -70,15 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				3AC4807A2837D5B900BE15D0 /* SnowSeekerApp.swift */,
-				3AC4807C2837D5B900BE15D0 /* ContentView.swift */,
-				3AC31133283B958B007FC25D /* ResortView.swift */,
-				3AC31135283BA458007FC25D /* SkiDetailsView.swift */,
-				3AC31137283BB31E007FC25D /* ResortDetailsView.swift */,
-				3AC31131283B8F45007FC25D /* WelcomeView.swift */,
-				3AC3112D283B80FE007FC25D /* Resort.swift */,
-				3AC31139283BC4AC007FC25D /* Facility.swift */,
-				3AC3113B283BCA9C007FC25D /* Favorites.swift */,
-				3AC3112F283B81BB007FC25D /* Bundle-Decodable.swift */,
+				3ABA5320283CDED500D339B3 /* Views */,
+				3ABA5321283CDEE900D339B3 /* Models */,
+				3ABA5323283CE17300D339B3 /* ViewModel */,
+				3ABA5322283CDEF400D339B3 /* Helpers */,
 				3AC3112B283B8037007FC25D /* resorts.json */,
 				3AC4807E2837D5B900BE15D0 /* Assets.xcassets */,
 				3AC480802837D5B900BE15D0 /* Preview Content */,
