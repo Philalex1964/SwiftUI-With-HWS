@@ -17,11 +17,18 @@ extension View {
     }
 }
 
+enum Sort {
+    case none, name, country
+}
+
 struct ContentView: View {
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
     
     @StateObject var favorites = Favorites()
     @State private var searchText = ""
+    
+    @State private var sorting = Sort.none
+    @State private var showingSortMenu = false
 
     var body: some View {
         NavigationView {
@@ -60,6 +67,29 @@ struct ContentView: View {
             }
             .navigationTitle("Resorts")
             .searchable(text: $searchText, prompt: "Search for a resort")
+            .toolbar {
+                Button {
+                    showingSortMenu = true
+                } label: {
+                    Label("Sort", systemImage: "person.crop.rectangle.stack")
+                }
+                
+            }
+            .confirmationDialog("Sort", isPresented: $showingSortMenu) {
+                Button("Name") {
+                    sorting = .name
+                }
+                Button("Country") {
+                    sorting = .country
+                }
+                Button("Default") {
+                    sorting = .none
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("Sort by:")
+            }
+
             
             WelcomeView()
         }
@@ -69,7 +99,15 @@ struct ContentView: View {
     
     var filteredResorts: [Resort] {
         if searchText.isEmpty {
-            return resorts
+            switch sorting {
+            case .name:
+                return resorts.sorted { $0.name < $1.name }
+            case .country:
+                return resorts.sorted { $0.country < $1.country }
+            default:
+                return resorts
+            }
+            
         } else {
             return resorts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
