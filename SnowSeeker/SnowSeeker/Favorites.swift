@@ -15,10 +15,9 @@ class Favorites: ObservableObject {
     private let saveKey = "Favorites"
     
     init() {
-        // load our saved data
-        
-        // still here? Use an empty array
         resorts = []
+        
+        loadData()
     }
     
     // returns true if our set contains this resort
@@ -30,17 +29,27 @@ class Favorites: ObservableObject {
     func add(_ resort: Resort) {
         objectWillChange.send()
         resorts.insert(resort.id)
-        save()
+        saveData()
     }
     
     // removes the resort from our set, updates all views, and saves the change
     func remove(_ resort: Resort) {
         objectWillChange.send()
         resorts.remove(resort.id)
-        save()
+        saveData()
     }
     
-    func save() {
-        // write out our data
+    func saveData() {
+        if let data = try? JSONEncoder().encode(resorts) {
+            UserDefaults.standard.set(data, forKey: saveKey)
+        }
+    }
+    
+    func loadData() {
+        if let data = UserDefaults.standard.data(forKey: saveKey) {
+            if let decoded = try? JSONDecoder().decode([String].self, from: data)  {
+                resorts = Set(decoded)
+            }
+        }
     }
 }
