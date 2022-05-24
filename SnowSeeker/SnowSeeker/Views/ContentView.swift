@@ -7,25 +7,13 @@
 
 import SwiftUI
 
-extension View {
-    @ViewBuilder func phoneOnlyStackNavigationView() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            self.navigationViewStyle(.stack)
-        } else {
-            self
-        }
-    }
-}
-
 struct ContentView: View {
-    let resorts: [Resort] = Bundle.main.decode("resorts.json")
-    
+    @StateObject private var viewModel = ViewModel()
     @StateObject var favorites = Favorites()
-    @State private var searchText = ""
 
     var body: some View {
         NavigationView {
-            List(filteredResorts) { resort in
+            List(viewModel.filteredResorts) { resort in
                 NavigationLink {
                     ResortView(resort: resort)
                 } label: {
@@ -59,20 +47,35 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Resorts")
-            .searchable(text: $searchText, prompt: "Search for a resort")
+            .searchable(text: $viewModel.searchText, prompt: "Search for a resort")
+            .toolbar {
+                Button {
+                    viewModel.showingSortMenu = true
+                } label: {
+                    Label("Sort", systemImage: "person.crop.rectangle.stack")
+                }
+                
+            }
+            .confirmationDialog("Sort", isPresented: $viewModel.showingSortMenu) {
+                Button("Name") {
+                    viewModel.sorting = .name
+                }
+                Button("Country") {
+                    viewModel.sorting = .country
+                }
+                Button("Default") {
+                    viewModel.sorting = .none
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("Sort by:")
+            }
+
             
             WelcomeView()
         }
 //        .phoneOnlyStackNavigationView()
         .environmentObject(favorites)
-    }
-    
-    var filteredResorts: [Resort] {
-        if searchText.isEmpty {
-            return resorts
-        } else {
-            return resorts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-        }
     }
 }
 
