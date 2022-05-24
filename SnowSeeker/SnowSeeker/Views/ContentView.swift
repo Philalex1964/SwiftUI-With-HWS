@@ -7,32 +7,13 @@
 
 import SwiftUI
 
-extension View {
-    @ViewBuilder func phoneOnlyStackNavigationView() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            self.navigationViewStyle(.stack)
-        } else {
-            self
-        }
-    }
-}
-
-enum Sort {
-    case none, name, country
-}
-
 struct ContentView: View {
-    let resorts: [Resort] = Bundle.main.decode("resorts.json")
-    
+    @StateObject private var viewModel = ViewModel()
     @StateObject var favorites = Favorites()
-    @State private var searchText = ""
-    
-    @State private var sorting = Sort.none
-    @State private var showingSortMenu = false
 
     var body: some View {
         NavigationView {
-            List(filteredResorts) { resort in
+            List(viewModel.filteredResorts) { resort in
                 NavigationLink {
                     ResortView(resort: resort)
                 } label: {
@@ -66,24 +47,24 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Resorts")
-            .searchable(text: $searchText, prompt: "Search for a resort")
+            .searchable(text: $viewModel.searchText, prompt: "Search for a resort")
             .toolbar {
                 Button {
-                    showingSortMenu = true
+                    viewModel.showingSortMenu = true
                 } label: {
                     Label("Sort", systemImage: "person.crop.rectangle.stack")
                 }
                 
             }
-            .confirmationDialog("Sort", isPresented: $showingSortMenu) {
+            .confirmationDialog("Sort", isPresented: $viewModel.showingSortMenu) {
                 Button("Name") {
-                    sorting = .name
+                    viewModel.sorting = .name
                 }
                 Button("Country") {
-                    sorting = .country
+                    viewModel.sorting = .country
                 }
                 Button("Default") {
-                    sorting = .none
+                    viewModel.sorting = .none
                 }
                 Button("Cancel", role: .cancel) { }
             } message: {
@@ -95,22 +76,6 @@ struct ContentView: View {
         }
 //        .phoneOnlyStackNavigationView()
         .environmentObject(favorites)
-    }
-    
-    var filteredResorts: [Resort] {
-        if searchText.isEmpty {
-            switch sorting {
-            case .name:
-                return resorts.sorted { $0.name < $1.name }
-            case .country:
-                return resorts.sorted { $0.country < $1.country }
-            default:
-                return resorts
-            }
-            
-        } else {
-            return resorts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-        }
     }
 }
 
