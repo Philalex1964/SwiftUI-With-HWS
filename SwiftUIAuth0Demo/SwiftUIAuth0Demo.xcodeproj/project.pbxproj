@@ -11,6 +11,9 @@
 		3A859887283F77DF00644494 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A859886283F77DF00644494 /* ContentView.swift */; };
 		3A859889283F77DF00644494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A859888283F77DF00644494 /* Assets.xcassets */; };
 		3A85988C283F77DF00644494 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A85988B283F77DF00644494 /* Preview Assets.xcassets */; };
+		3A859897283F7C8300644494 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 3A859896283F7C8300644494 /* Auth0 */; };
+		3A859899283F7E1F00644494 /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A859898283F7E1F00644494 /* Auth0.plist */; };
+		3A85989B283FA00100644494 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A85989A283FA00100644494 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,8 @@
 		3A859886283F77DF00644494 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3A859888283F77DF00644494 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A85988B283F77DF00644494 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3A859898283F7E1F00644494 /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
+		3A85989A283FA00100644494 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A859897283F7C8300644494 /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +59,10 @@
 			children = (
 				3A859884283F77DF00644494 /* SwiftUIAuth0DemoApp.swift */,
 				3A859886283F77DF00644494 /* ContentView.swift */,
+				3A85989A283FA00100644494 /* Profile.swift */,
 				3A859888283F77DF00644494 /* Assets.xcassets */,
 				3A85988A283F77DF00644494 /* Preview Content */,
+				3A859898283F7E1F00644494 /* Auth0.plist */,
 			);
 			path = SwiftUIAuth0Demo;
 			sourceTree = "<group>";
@@ -83,6 +91,9 @@
 			dependencies = (
 			);
 			name = SwiftUIAuth0Demo;
+			packageProductDependencies = (
+				3A859896283F7C8300644494 /* Auth0 */,
+			);
 			productName = SwiftUIAuth0Demo;
 			productReference = 3A859881283F77DE00644494 /* SwiftUIAuth0Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 3A859878283F77DE00644494;
+			packageReferences = (
+				3A859895283F7C8300644494 /* XCRemoteSwiftPackageReference "Auth0.swift" */,
+			);
 			productRefGroup = 3A859882283F77DE00644494 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A85988C283F77DF00644494 /* Preview Assets.xcassets in Resources */,
+				3A859899283F7E1F00644494 /* Auth0.plist in Resources */,
 				3A859889283F77DF00644494 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A859887283F77DF00644494 /* ContentView.swift in Sources */,
+				3A85989B283FA00100644494 /* Profile.swift in Sources */,
 				3A859885283F77DF00644494 /* SwiftUIAuth0DemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +355,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3A859895283F7C8300644494 /* XCRemoteSwiftPackageReference "Auth0.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A859896283F7C8300644494 /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A859895283F7C8300644494 /* XCRemoteSwiftPackageReference "Auth0.swift" */;
+			productName = Auth0;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3A859879283F77DE00644494 /* Project object */;
 }
