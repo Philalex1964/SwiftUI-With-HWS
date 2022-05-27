@@ -11,6 +11,7 @@
 		3AC0849A2840B12E0023BE65 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC084992840B12E0023BE65 /* GoogleSignInSwift */; };
 		3AC0849E2840B48A0023BE65 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0849D2840B48A0023BE65 /* GoogleSignInButton.swift */; };
 		3AC084A02840C82B0023BE65 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0849F2840C82B0023BE65 /* AuthenticationViewModel.swift */; };
+		3AC084A2284107280023BE65 /* SignWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC084A1284107280023BE65 /* SignWithAppleButton.swift */; };
 		3AF182AC283FBC1D002CD357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AF182AB283FBC1D002CD357 /* GoogleService-Info.plist */; };
 		3AF182AF283FBD21002CD357 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3AF182AE283FBD21002CD357 /* FirebaseAuth */; };
 		962C8937276782E400F8BBBB /* AuthenticationStarterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962C8936276782E400F8BBBB /* AuthenticationStarterApp.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		3AC0849D2840B48A0023BE65 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		3AC0849F2840C82B0023BE65 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		3AC084A1284107280023BE65 /* SignWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignWithAppleButton.swift; sourceTree = "<group>"; };
 		3AF182AB283FBC1D002CD357 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3AF182B0283FCC34002CD357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		962C8933276782E400F8BBBB /* AuthenticationStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthenticationStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 				962C8944276782F200F8BBBB /* MotherView.swift */,
 				962C894A2767832D00F8BBBB /* SignUpView.swift */,
 				962C894C2767833400F8BBBB /* SignInView.swift */,
+				3AC084A1284107280023BE65 /* SignWithAppleButton.swift */,
 				3AC0849F2840C82B0023BE65 /* AuthenticationViewModel.swift */,
 				962C894E2767833D00F8BBBB /* HomeView.swift */,
 				3AC0849D2840B48A0023BE65 /* GoogleSignInButton.swift */,
@@ -188,6 +191,7 @@
 				962C8945276782F200F8BBBB /* MotherView.swift in Sources */,
 				962C894D2767833400F8BBBB /* SignInView.swift in Sources */,
 				3AC0849E2840B48A0023BE65 /* GoogleSignInButton.swift in Sources */,
+				3AC084A2284107280023BE65 /* SignWithAppleButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
