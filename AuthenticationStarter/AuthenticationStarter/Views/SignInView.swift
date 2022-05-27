@@ -12,6 +12,9 @@ struct SignInView: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
     
+    @State var signInProcessing = false
+    @State var signInErrorMessage = ""
+    
     @State var email = ""
     @State var password = ""
     
@@ -21,7 +24,7 @@ struct SignInView: View {
             Spacer()
             SignInCredentialFields(email: $email, password: $password)
             Button(action: {
-                //Sign in user using Firebase
+                signInUser(userEmail: email, userPassword: password)
             }) {
                 Text("Log In")
                     .bold()
@@ -29,7 +32,18 @@ struct SignInView: View {
                     .background(.thinMaterial)
                     .cornerRadius(10)
             }
+            .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
+            
+            if signInProcessing {
+                ProgressView()
+            }
+            if !signInErrorMessage.isEmpty {
+                Text("Failed creating account: \(signInErrorMessage)")
+                    .foregroundColor(.red)
+            }
+            
             Spacer()
+            
             HStack {
                 Text("Don't have an account?")
                 Button(action: {
@@ -41,6 +55,30 @@ struct SignInView: View {
                 .opacity(0.9)
         }
             .padding()
+    }
+    
+    func signInUser(userEmail: String, userPassword: String) {
+        signInProcessing = true
+        
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            guard error == nil else {
+                        signInProcessing = false
+                        signInErrorMessage = error!.localizedDescription
+                        return
+            }
+            
+            switch authResult {
+                    case .none:
+                        print("Could not sign in user.")
+                        signInProcessing = false
+                    case .some(_):
+                        print("User signed in")
+                        signInProcessing = false
+                        withAnimation {
+                            viewRouter.currentPage = .homePage
+                        }
+            }
+        }
     }
 }
 
