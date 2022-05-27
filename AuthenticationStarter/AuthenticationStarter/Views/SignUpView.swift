@@ -10,7 +10,8 @@ import Firebase
 
 struct SignUpView: View {
     
-    @EnvironmentObject var viewRouter: ViewRouter
+//    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     @State var email = ""
     @State var password = ""
@@ -45,7 +46,8 @@ struct SignUpView: View {
             HStack {
                 Text("Already have an account?")
                 Button(action: {
-                    viewRouter.currentPage = .signInPage
+//                    viewRouter.currentPage = .signInPage
+                    viewModel.state = .signedOut
                 }) {
                     Text("Log In")
                 }
@@ -72,7 +74,8 @@ struct SignUpView: View {
                 case .some(_):
                     print("User created")
                     signUpProcessing = false
-                    viewRouter.currentPage = .homePage
+                    viewModel.state = .signedIn
+//                    viewRouter.currentPage = .homePage
                 }
             }
     }

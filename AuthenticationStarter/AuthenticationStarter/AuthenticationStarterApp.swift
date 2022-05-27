@@ -7,11 +7,13 @@
 
 import SwiftUI
 import Firebase
+import GoogleSignIn
 
 @main
 struct AuthenticationStarterApp: App {
+    @StateObject var viewModel = AuthenticationViewModel()
     
-    @StateObject var viewRouter = ViewRouter()
+//    @StateObject var viewRouter = ViewRouter()
     
     init() {
         FirebaseApp.configure()
@@ -19,7 +21,9 @@ struct AuthenticationStarterApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MotherView().environmentObject(viewRouter)
+            MotherView()
+//                .environmentObject(viewRouter)
+                .environmentObject(viewModel)
         }
     }
 }

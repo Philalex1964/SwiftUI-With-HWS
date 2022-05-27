@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Firebase
+import GoogleSignIn
 
 struct SignInView: View {
-    
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+//    @EnvironmentObject var viewRouter: ViewRouter
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
@@ -42,19 +43,29 @@ struct SignInView: View {
                     .foregroundColor(.red)
             }
             
+            GoogleSignInButton()
+                .frame(width: 360, height: 50)
+                .cornerRadius(10)
+                .padding()
+                .onTapGesture {
+                    viewModel.signIn()
+                }
+                
+            
             Spacer()
             
             HStack {
                 Text("Don't have an account?")
                 Button(action: {
-                    viewRouter.currentPage = .signUpPage
+//                    viewRouter.currentPage = .signUpPage
+                    viewModel.state = .signUp
                 }) {
                     Text("Sign Up")
                 }
             }
-                .opacity(0.9)
+            .opacity(0.9)
         }
-            .padding()
+        .padding()
     }
     
     func signInUser(userEmail: String, userPassword: String) {
@@ -62,21 +73,22 @@ struct SignInView: View {
         
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard error == nil else {
-                        signInProcessing = false
-                        signInErrorMessage = error!.localizedDescription
-                        return
+                signInProcessing = false
+                signInErrorMessage = error!.localizedDescription
+                return
             }
             
             switch authResult {
-                    case .none:
-                        print("Could not sign in user.")
-                        signInProcessing = false
-                    case .some(_):
-                        print("User signed in")
-                        signInProcessing = false
-                        withAnimation {
-                            viewRouter.currentPage = .homePage
-                        }
+            case .none:
+                print("Could not sign in user.")
+                signInProcessing = false
+            case .some(_):
+                print("User signed in")
+                signInProcessing = false
+                withAnimation {
+//                    viewRouter.currentPage = .homePage
+                    viewModel.state = .signedIn
+                }
             }
         }
     }
