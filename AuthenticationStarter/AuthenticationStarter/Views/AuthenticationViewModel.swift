@@ -17,9 +17,7 @@ class AuthenticationViewModel: ObservableObject {
         case signedOut
         case signUp
     }
-    
-//    @EnvironmentObject var viewRouter: ViewRouter
-    
+        
     // 2
     @Published var state: SignInState = .signedOut
     

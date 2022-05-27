@@ -10,7 +10,6 @@ import Firebase
 
 struct HomeView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
-//    @EnvironmentObject var viewRouter: ViewRouter
     @State var signOutProcessing = false
 
     var body: some View {
@@ -41,7 +40,6 @@ struct HomeView: View {
             signOutProcessing = false
         }
         withAnimation {
-//            viewRouter.currentPage = .signInPage
             viewModel.state = .signedOut
         }
     }

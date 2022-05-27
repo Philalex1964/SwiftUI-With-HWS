@@ -11,7 +11,6 @@ import GoogleSignIn
 
 struct SignInView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
-//    @EnvironmentObject var viewRouter: ViewRouter
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
@@ -57,7 +56,6 @@ struct SignInView: View {
             HStack {
                 Text("Don't have an account?")
                 Button(action: {
-//                    viewRouter.currentPage = .signUpPage
                     viewModel.state = .signUp
                 }) {
                     Text("Sign Up")
@@ -86,7 +84,6 @@ struct SignInView: View {
                 print("User signed in")
                 signInProcessing = false
                 withAnimation {
-//                    viewRouter.currentPage = .homePage
                     viewModel.state = .signedIn
                 }
             }
