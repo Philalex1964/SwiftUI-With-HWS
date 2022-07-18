@@ -20,7 +20,7 @@ struct SignInView: View {
     
     var body: some View {
         VStack(spacing: 15) {
-            LogoView()
+//            LogoView()
             Spacer()
             SignInCredentialFields(email: $email, password: $password)
             Button(action: {

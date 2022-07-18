@@ -15,7 +15,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             Text("HomeView")
-                .navigationTitle("V24")
+                .navigationTitle("")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         if signOutProcessing {

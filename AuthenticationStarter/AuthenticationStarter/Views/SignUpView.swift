@@ -21,7 +21,7 @@ struct SignUpView: View {
     
     var body: some View {
         VStack(spacing: 15) {
-            LogoView()
+//            LogoView()
             Spacer()
             SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
             Button(action: {
@@ -84,15 +84,15 @@ struct SignUpView_Previews: PreviewProvider {
     }
 }
 
-struct LogoView: View {
-    var body: some View {
-        Image("Logo")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 300, height: 150)
-            .padding(.top, 70)
-    }
-}
+//struct LogoView: View {
+//    var body: some View {
+//        Image("Logo")
+//            .resizable()
+//            .aspectRatio(contentMode: .fit)
+//            .frame(width: 300, height: 150)
+//            .padding(.top, 70)
+//    }
+//}
 
 struct SignUpCredentialFields: View {
     
